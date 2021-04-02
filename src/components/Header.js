@@ -6,6 +6,8 @@ import * as actions from '../action/index';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleLogin from 'react-google-login';
+
+
 class Header extends Component {
 
     constructor(props) {
@@ -18,6 +20,7 @@ class Header extends Component {
     }
     
     responseGoogle = (response) => {
+        console.log(response);
         this.props.handleLogin(response.profileObj.givenName, response.profileObj.imageUrl);
     }
 
