@@ -157,7 +157,8 @@ class Header extends Component {
                         <div>
                            {name ? ''
                              : <GoogleLogin  
-                                clientId="586157721906-8ca913t35i5u9lk76vgcms0oi9360ff9.apps.googleusercontent.com"
+                                clientId="586157721906-6sihd8mrvqhu2lpkd9pinkgu1fvqnknu.apps.googleusercontent.com
+                                "
                                 buttonText="Login"
                                 onSuccess={this.responseGoogle}    
                                 onFailure={this.responseGoogle}
