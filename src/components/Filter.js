@@ -83,11 +83,8 @@ class Filter extends Component {
             limitedEdition,
             newArrival,
             bestSeller,
-            style,
-            type,
             price,
             by,
-            color,
             removeFilter
         } = this.state;
         let {products} = this.props;

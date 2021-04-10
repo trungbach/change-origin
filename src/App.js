@@ -1,6 +1,6 @@
 import './custom.css';
 import './Apps.css';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Men from './pages/Men';
 import Home from './pages/Home';
 import Women from './pages/Women';

@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as actions from '../action/index';
-import Header from './Header';
 import Footer from './Footer';
 import HeaderSlide from './HeaderSlide';
 import ProductItem from './ProductItem';
 
 class SearchResult extends Component {
+
+
     render() {
-        let {search, products} = this.props;
+        let {search, products, favorite} = this.props;
+        console.log('a',search);
+        console.log(favorite);
+        console.log(products);
         if(search !== '') {
             products = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
         }
 
         if(products.length > 0) {
-            products = products.map(product => <ProductItem product={product} />);
+            products = products.map(product => <ProductItem product={product} favorite={favorite}/>);
         }
         else products = <h2 className='search-empty'>Không tìm thấy kết quả !</h2>
         return (
@@ -41,17 +45,13 @@ class SearchResult extends Component {
     }
 }
 
-const mapPropsToState = (state) => {
+const mapStateToProps = (state) => {
     return {
         products: state.products,
-        search: state.searchProducts
+        search: state.searchProducts,
+        favorite: state.favoriteReducer
     }
 }
 
-const mapDispatchToState = (dispatch, props) => {
-    return {
 
-    }
-}
-
-export default connect(mapPropsToState, mapDispatchToState)(SearchResult);
+export default connect(mapStateToProps)(SearchResult);

@@ -20,13 +20,13 @@ class Header extends Component {
     }
     
     responseGoogle = (response) => {
-        console.log(response);
         this.props.handleLogin(response.profileObj.givenName, response.profileObj.imageUrl);
     }
 
-    componentDidMount() {
-        this.props.getCarts();
+    componentDidMount() { 
         this.props.getFavorite();
+        this.props.getCarts();
+        this.props.getProducts();
     }
 
     handleInputSearch = (e) => {
@@ -36,7 +36,7 @@ class Header extends Component {
     }
 
     handleSearch = () => {
-        let {inputSearch} = this.state
+        let {inputSearch} = this.state;
         this.props.onSearch(inputSearch);
     }
     
@@ -123,7 +123,7 @@ class Header extends Component {
                             <input className="form-control me-2" type="search" 
                                     onChange={this.handleInputSearch} 
                                     placeholder="Search" aria-label="Search" />
-                            <button className="btn" type="submit" onClick = {this.handleSearch}>
+                            <button className="btn" onClick={this.handleSearch}>
                                 <Link to='/search'>
                                     <i class="fas fa-search"></i>
                                 </Link>
@@ -202,6 +202,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         getFavorite: () => {
             dispatch(actions.fetchFavoriteRequest());
+        },
+        getProducts: () => {
+            dispatch(actions.fetchProductsRequest());
         },
         handleLogin: (name, avatar) => {
             dispatch(actions.loginUser(name, avatar));

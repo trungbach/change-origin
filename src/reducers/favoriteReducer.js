@@ -14,16 +14,15 @@ const myReducer = (state = initialState, action) => {
                 name: product.name,
                 slug: product.slug, 
                 mainImg:  product.mainImg || product.images[0].url ,
-                price: product.price
+                price: product.price,
             }
           
             callAPIToHandleFavorite('post', favoriteItem);
-            newState.push(favoriteItem);
-            return newState;
+            return [...newState, favoriteItem];
         }
         case Types.REMOVE_FROM_FAVORITE: {
-            let {id, slug} = action;
-            callAPIToHandleFavorite('delete', {}, id);
+            let {slug} = action;
+            callAPIToHandleFavorite('delete', {}, slug);
             if(newState.length > 0) 
                 newState = newState.filter(item => item.slug !== slug);
              return newState;

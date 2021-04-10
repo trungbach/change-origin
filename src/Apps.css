@@ -1,5 +1,4 @@
-/* @import url(c:\Users\THINKPAD T460s\Downloads\Trung bach\ReactJS\ANANAS\src\asset\reset.css); */
-@import url("./asset/reset.css");
+@import url(c:\Users\THINKPAD T460s\OneDrive\Desktop\Main Project\ANANAS\src\asset\reset.css);
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
 body {
   font-family: 'Roboto Condensed', sans-serif;
@@ -131,6 +130,11 @@ body {
 .navbar form input {
   border-radius: 2rem;
   padding: 1.5rem 3rem;
+}
+
+.navbar form a {
+  width: 4rem;
+  height: 4rem;
 }
 
 .navbar form button {
@@ -500,10 +504,6 @@ body {
 
 .products__list .products__item-add .add-to-favorite {
   display: block;
-}
-
-.products__list .products__item-add .isFavorite {
-  background-color: var(--hover-color);
 }
 
 .products__list .products__item-caption .products__item-new {

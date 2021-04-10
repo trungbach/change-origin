@@ -25,7 +25,6 @@ class Cart extends Component {
 
     componentDidMount() {
         this.props.getCarts();
-        console.log(typeof handleFavorite);
     }
 
     handleChangeOption = (e, slug, size, quantity) => {
@@ -102,7 +101,7 @@ class Cart extends Component {
                 if(slug === cart.slug) {
                     isExist = true;                    
                     console.log(id);
-                    this.props.handleRemoveToFavorite(id, slug);
+                    this.props.handleRemoveToFavorite(slug);
                     return false;
                 }
             })
@@ -286,8 +285,8 @@ const mapDispatchToState = (dispatch, props) => {
         handleAddToFavorite: (favoriteItem) => {
             dispatch(actions.addToFavorite(favoriteItem));
         },
-        handleRemoveToFavorite: (id, slug) => {
-            dispatch(actions.removeFromFavorite(id, slug));
+        handleRemoveToFavorite: (slug) => {
+            dispatch(actions.removeFromFavorite(slug));
         },
         fetchFavorite: () => {
             dispatch(actions.fetchFavoriteRequest());

@@ -72,11 +72,10 @@ class SingleProduct extends Component {
         if(this.props.favorite.length) {
             console.log(this.props.favorite[0].id);
             let isExist = false;
-            this.props.favorite.forEach(({slug, id}) => {
+            this.props.favorite.forEach(({slug}) => {
                 if(slug === product.slug) {
                     isExist = true;                    
-                    console.log(id);
-                    this.props.handleRemoveToFavorite(id, product.slug);
+                    this.props.handleRemoveToFavorite(product.slug);
                     return false;
                 }
             })
@@ -275,8 +274,8 @@ const mapDispatchToProps = (dispatch, props) => {
         handleAddToFavorite: (favoriteItem) => {
             dispatch(actions.addToFavorite(favoriteItem));
         },
-        handleRemoveToFavorite: (id, slug) => {
-            dispatch(actions.removeFromFavorite(id, slug));
+        handleRemoveToFavorite: (slug) => {
+            dispatch(actions.removeFromFavorite(slug));
         }
     }
 }

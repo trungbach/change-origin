@@ -107,6 +107,10 @@ body {
             border-radius: 2rem;
             padding: 1.5rem 3rem;
         }
+        a {
+            width: 4rem;
+            height: 4rem;
+        }
         button {
             outline: none;
             border: none;
@@ -406,9 +410,6 @@ body {
             }
             .add-to-favorite {
                 display: block;
-            }
-            .isFavorite {
-                background-color: var(--hover-color);
             }
         }
         &-caption {

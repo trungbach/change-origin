@@ -16,9 +16,8 @@ class ProductsList extends Component {
         }
     }
 
-    async componentDidMount() {
-        await this.props.fetchProducts();
-        await this.props.fetchFavorite();
+    componentDidMount() {
+        this.props.getFavorite();
     }
 
     handleSort = (type, value) => {
@@ -33,6 +32,7 @@ class ProductsList extends Component {
 
         let { filter, gender, favorite, products} = this.props;
         let loading = true;
+        console.log(favorite);
         if(products.length > 0) loading = false;
         if(gender === 'men') {
             products = products.filter(product => product.gender === 'men' || product.gender === 'unisex');
@@ -87,7 +87,7 @@ class ProductsList extends Component {
         }
         products = products.filter(product => product.price <= filter.price);
         if(products.length > 0)
-            products = products.map(product => <ProductItem product={product} favorite={favorite}/>)
+            products = products.map((product,index) => <ProductItem key={index} product={product} favorite={favorite}/>)
 
         return (
             <div className='products__container'>
@@ -113,10 +113,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        fetchProducts: () => {
-            dispatch(actions.fetchProductsRequest());
-        },
-        fetchFavorite: () => {
+        getFavorite: () => {
             dispatch(actions.fetchFavoriteRequest());
         }
     }

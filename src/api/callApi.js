@@ -39,6 +39,7 @@ export const callAPIToHandleCart = (type, cartItem, id) => {
                     {...cartItem}
                    
             );
+            break;
         default: break;
     }
 }
@@ -61,7 +62,7 @@ export const callAPIToHandleAddress = (type, address, id) => {
     }
 }
 
-export const callAPIToHandleFavorite = (type, favorite, id) => {
+export const callAPIToHandleFavorite = (type, favorite, slug) => {
     switch(type) {
         case 'post': 
             axios({
@@ -71,7 +72,11 @@ export const callAPIToHandleFavorite = (type, favorite, id) => {
             });
             break;
         case 'delete': 
-            axios.delete(`${urlApiFavorite}/${id}`)
+            axios.get(`${urlApiFavorite}/?slug=${slug}`)
+            .then(res => {
+                console.log(res.data[0]);
+                axios.delete(`${urlApiFavorite}/${res.data[0].id}`);
+            })
                 .catch(error => console.log(error));
             break;
         default: break;

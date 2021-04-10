@@ -145,10 +145,9 @@ export const addToFavorite = (product) => {
     }
 }
 
-export const removeFromFavorite = (id, slug) => {
+export const removeFromFavorite = (slug) => {
     return {
         type: Types.REMOVE_FROM_FAVORITE,
-        id, 
         slug
     }
 }
