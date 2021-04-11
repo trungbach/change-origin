@@ -1,4 +1,4 @@
-@import url('./asset/reset.css');
+@import url(c:\Users\THINKPAD T460s\OneDrive\Desktop\Main Project\ANANAS\src\asset\reset.css);
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
 body {
   font-family: 'Roboto Condensed', sans-serif;
@@ -157,8 +157,34 @@ body {
   }
 }
 
-.slick-list {
-  height: 80vh;
+@media (max-width: 992px) {
+  .navbar + div + div {
+    margin-top: 15rem;
+  }
+  .navbar-collapse * {
+    padding: 0.5rem 0;
+  }
+  .navbar .navbar-nav .nav-link {
+    padding: 0;
+  }
+  .cart .cart-content {
+    left: 0;
+  }
+  /* carts */
+  .carts .carts-pay {
+    margin-bottom: 5rem;
+  }
+  .slick-hidden {
+    display: none;
+  }
+  #slider {
+    margin-top: 11rem;
+  }
+}
+
+/* SLIDER */
+.slick-slide img {
+  width: 100%;
 }
 
 .category {

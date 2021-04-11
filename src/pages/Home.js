@@ -2,12 +2,14 @@ import React,{useState} from 'react'
 import Category from '../components/Home/Category';
 import Slide from '../components/Slide';
 import img from "../asset/images/Banner_Clothing.jpg"
-import Footer from '../components/Footer';
+import HeaderSlide from '../components/HeaderSlide';
+
 
 function Home() {
     
     return (
         <>
+            <HeaderSlide />
             <Slide />
             <Category />
             {/* BestSeller */}

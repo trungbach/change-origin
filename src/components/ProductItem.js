@@ -5,35 +5,25 @@ import heart from '../asset/images/heart.png';
 import numeral from 'numeral';
 import * as actions from '../action/index';
 
-export default function ProductItem({product, favorite}) {
+export default function ProductItem({type, product, favorite}) {
     
     const [isFavorite, setIsFavorite] = useState(false);
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favoriteReducer);
-    
     useEffect(() => {
-        console.log(favorites);
-        // console.log(isFavorite);
-        console.log(favorite);
-        // if(favorite.length) {
-        //     favorite.forEach(({slug}) => {
-        //         if(slug === product.slug) {
-        //             console.log(slug);
-        //             setIsFavorite(true);
-        //             return false;
-        //         }
-        //     })
-        // }
         if(favorites.length) {
-            favorites.forEach(({slug}) => {
+            let len = favorites.length;
+            let i = 0;
+            for(var j = 0; j < len; j++) {
+                let {slug} = favorites[j];
                 if(slug === product.slug) {
-                    console.log(slug);
                     setIsFavorite(true);
-                    return false;
-                }
-            })
+                    break;
+                } else i++;
+            }
+            if(i === len) setIsFavorite(false);
         }
-    }, []);
+    });
 
     const handleAddToFavorite = () => {
         if(favorite.length) {

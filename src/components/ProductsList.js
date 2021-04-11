@@ -32,7 +32,7 @@ class ProductsList extends Component {
 
         let { filter, gender, favorite, products} = this.props;
         let loading = true;
-        console.log(favorite);
+        // console.log(favorite);
         if(products.length > 0) loading = false;
         if(gender === 'men') {
             products = products.filter(product => product.gender === 'men' || product.gender === 'unisex');
@@ -47,6 +47,7 @@ class ProductsList extends Component {
                 else if(a.name < b.name) return -value;
                 else return 0;
             });
+            
         } else if(type === 'price') {
             products.sort((a, b) => {
                 if(a.price > b.price) return value;
@@ -87,7 +88,7 @@ class ProductsList extends Component {
         }
         products = products.filter(product => product.price <= filter.price);
         if(products.length > 0)
-            products = products.map((product,index) => <ProductItem key={index} product={product} favorite={favorite}/>)
+            products = products.map((product,index) => <ProductItem key={index} type={type} product={product} favorite={favorite}/>)
 
         return (
             <div className='products__container'>

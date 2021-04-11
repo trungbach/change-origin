@@ -16,7 +16,7 @@ class Slide extends Component {
             slidesToScroll: 1
           };
         return (
-            <div className="slider">
+            <div className="slider" id='slider'>
                     <Slider {...settings} >
                         <div>
                             <img src={img1} alt=""/>
