@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Filter from '../components/Filter';
-import Footer from '../components/Footer';
 import ProductsList from '../components/ProductsList';
 import HeaderSlide from '../components/HeaderSlide';
 

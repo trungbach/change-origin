@@ -7,8 +7,6 @@ import numeral from 'numeral';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as message from '../Message';
-import Footer from '../components/Footer';
-import {a} from '../util/HandleFavorite';
 
 
 class Cart extends Component {

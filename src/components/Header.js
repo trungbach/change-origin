@@ -94,7 +94,7 @@ class Header extends Component {
                 });
             }
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light" >
                 <div className="container">
                     <Link to='/'>
                         <img src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/Logo_Ananas_Header.svg" alt=""/>                

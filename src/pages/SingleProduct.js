@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as actions from '../action/index';
-import Footer from '../components/Footer';
 import HeaderSlide from '../components/HeaderSlide';
 import numeral from 'numeral';
 import heart from '../asset/images/heart.png';

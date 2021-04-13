@@ -3,7 +3,7 @@ import arrow from '../asset/images/arrow_right.jpg';
 import ananas from '../asset/images/Logo_Ananas_Footer.svg';
 const Footer = () => {
     return (
-        <div className='footer'>
+        <div className='footer' id='bottom'>
             <div className="footer__list">
                 <div className="footer__item">
                     <img src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/Store.svg" alt=""/>

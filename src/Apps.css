@@ -1,4 +1,4 @@
-@import url('./asset/reset.css');
+@import url(c:\Users\THINKPAD T460s\OneDrive\Desktop\Main Project\ANANAS\src\asset\reset.css);
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
 body {
   font-family: 'Roboto Condensed', sans-serif;
@@ -6,6 +6,33 @@ body {
 
 :root {
   --hover-color: #f15e2c;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.App {
+  position: relative;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+  border: none;
+  background-color: transparent;
+}
+
+.scroll-to-top a i {
+  font-size: 3rem;
+  color: var(--hover-color);
+}
+
+@media (max-width: 992px) {
+  .scroll-to-top {
+    display: none;
+  }
 }
 
 .indexedStep {

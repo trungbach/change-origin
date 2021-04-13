@@ -14,7 +14,7 @@ export default class HeaderSlide extends Component {
             cssEase: "linear"
         };
         return (
-            <div className='header-slide slick-hidden'>
+            <div className='header-slide slick-hidden' id='top'>
                 <Slider {...settings}>
                     <div>
                         <h3>FREE SHIPPING VỚI HÓA ĐƠN TỪ 800K !</h3>

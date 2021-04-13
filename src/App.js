@@ -11,6 +11,7 @@ import SingleProduct from './pages/SingleProduct';
 import SearchResult from './components/SearchResult';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ButtonScroll from './components/ButtonScroll';
 
 function App() {
 
@@ -32,7 +33,8 @@ function App() {
                 render={({match}) => <SingleProduct match={match} />}></Route>
           <Route path='/search' exact><SearchResult /></Route>
         </Switch>
-        <Footer />                
+        <Footer />   
+        <ButtonScroll />             
       </div>
     </Router>
     
