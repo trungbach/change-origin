@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
-import Filter from '../components/Filter';
-import ProductsList from '../components/ProductsList';
-import HeaderSlide from '../components/HeaderSlide';
+import React  from 'react';
+import Filter from '../components/Filter/Filter';
+import ProductsList from '../components/Products/ProductsList';
+import HeaderSlide from '../components/Header/HeaderSlide';
 
+const Men = () => {
 
-class Men extends Component {
-
-    render() {
-        return (
-            <div>
-                <HeaderSlide />
-                <div className='products container'>
-                    <Filter />
-                    <ProductsList gender='men' />
-                </div>
+    return (
+        <div>
+            <HeaderSlide />
+            <div className='products container'>
+                <Filter />
+                <ProductsList gender='men' />
             </div>
-        );
-    }
+        </div>
+    );
 }
 export default Men;

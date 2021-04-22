@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
-import Filter from '../components/Filter';
-import ProductsList from '../components/ProductsList';
-import HeaderSlide from '../components/HeaderSlide';
+import React from 'react';
+import Filter from '../components/Filter/Filter';
+import HeaderSlide from '../components/Header/HeaderSlide';
+import ProductsList from '../components/Products/ProductsList';
+const Women = () =>  {
 
-
-class Women extends Component {
-
-    render() {
-        return (
-            <div>
-                <HeaderSlide />
-                <div className='products container'>
-                    <Filter />
-                    <ProductsList gender='women' />
-                </div>
+    return (
+        <div>
+            <HeaderSlide />
+            <div className='products container'>
+                <Filter />
+                <ProductsList gender='women' />
             </div>
-        );
-    }
+        </div>
+    );
 }
 export default Women;

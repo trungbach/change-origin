@@ -74,7 +74,6 @@ export const callAPIToHandleFavorite = (type, favorite, slug) => {
         case 'delete': 
             axios.get(`${urlApiFavorite}/?slug=${slug}`)
             .then(res => {
-                console.log(res.data[0]);
                 axios.delete(`${urlApiFavorite}/${res.data[0].id}`);
             })
                 .catch(error => console.log(error));

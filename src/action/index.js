@@ -14,17 +14,28 @@ export const fetchProducts = (products) => {
     }
 }
 
-export const filerProducts = (filterType) => {
+export const filterProducts = (filterType) => {
     return {
         type: Types.FILTER_PRODUCTS,
         filterType
     }
 }
 
-export const resetFilter = (filterTable) => {
+export const resetFilter = () => {
     return {
         type: Types.RESET_FILTER,
-        filterTable
+    }
+}
+
+export const getFilter = () => {
+    return {
+        type: Types.GET_FILTER
+    }
+}
+
+export const getSearchKey = () => {
+    return {
+        type: Types.GET_SEARCH_KEY
     }
 }
 
@@ -80,6 +91,12 @@ export const changeToCart = (slug, size, quantity, id) => {
         size,
         quantity,
         id
+    }
+}
+
+export const getIsLogin = () => {
+    return {
+        type: Types.GET_ISLOGIN
     }
 }
 

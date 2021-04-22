@@ -18,16 +18,28 @@ const initialState = {
 var myReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
-        case Types.FILTER_PRODUCTS:
-            newState = {...state, ...action.filterType};
+        case Types.GET_FILTER:
             return newState;
+        case Types.FILTER_PRODUCTS:
+            return newState = {...newState, ...action.filterType };
         case Types.RESET_FILTER:
-            newState = {...action.filterTable};
+            newState = {
+                saleOff: false,
+                onlineOnly: false,
+                limitedEdition: false,
+                newArrival: false,
+                bestSeller: false,
+                style: 'all',
+                type: 'all',
+                price: 990000,
+                by: 'all',
+                color: '',
+                removeFilter: false,
+                colorName: ''
+            }
             return newState;    
         case Types.FILTER_BYCOLOR:
-            newState.colorName = action.colorName;
-            // newState = {...state, ...action.colorName};
-            console.log(newState);
+            newState = {...state, colorName: action.colorName};
             return newState;    
         default: return {...state};    
     }

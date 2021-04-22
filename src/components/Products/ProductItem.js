@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom'
-import heart from '../asset/images/heart.png';
+import heart from '../../asset/images/heart.png';
 import numeral from 'numeral';
-import * as actions from '../action/index';
+import * as actions from '../../action/index';
 
-export default function ProductItem({type, product, favorite}) {
+export default function ProductItem({ product }) {
     
     const [isFavorite, setIsFavorite] = useState(false);
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favoriteReducer);
+
     useEffect(() => {
         if(favorites.length) {
             let len = favorites.length;
@@ -26,9 +27,9 @@ export default function ProductItem({type, product, favorite}) {
     });
 
     const handleAddToFavorite = () => {
-        if(favorite.length) {
+        if(favorites.length) {
             let isExist = false;
-            favorite.forEach(({slug}) => {
+            favorites.forEach(({slug}) => {
                 if(slug === product.slug) {
                     isExist = true;
                     dispatch(actions.removeFromFavorite(slug));

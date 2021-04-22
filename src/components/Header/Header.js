@@ -1,100 +1,95 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
 import numeral from 'numeral';
-import * as actions from '../action/index';
+import * as actions from '../../action/index';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleLogin from 'react-google-login';
 
 
-class Header extends Component {
+const Header = () =>  {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            inputSearch: '',
-            name: '',
-            avatar: ''
-        }
+    const [ inputSearch, setInputSearch ] = useState('');
+    const dispatch = useDispatch();
+    let carts = useSelector(state => state.cartReducer);
+    let favorites = useSelector(state => state.favoriteReducer);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    
+    useEffect(() => {
+        dispatch(actions.fetchFavoriteRequest());
+        dispatch(actions.fetchCartsRequest());
+        dispatch(actions.getIsLogin());
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [dispatch]);
+
+    let newCarts = [];
+    let newFavorites = [];
+    let total = 0;
+    if(carts.length)
+        carts = carts.map((cart,index) => {
+            total += cart.price * cart.quantity;
+            if(newCarts.find(elm => elm.slug === cart.slug))
+                return '';
+            else {
+                newCarts.push(cart);
+                return (
+                    <li key={index}>
+                        <Link to={`/products/${cart.slug}`}>
+                            <div className="cart-img">
+                                <img src={cart.mainImg} alt=""/>
+                            </div>
+                            <div className="cart-item">
+                                <h3>
+                                    {cart.name.toLowerCase()}
+                                </h3>
+                                <p>{numeral(cart.price).format(0,0)} vnd</p>
+                            </div>
+                        </Link>
+                    </li>
+                );
+            }    
+        });
+    if(favorites.length) {
+        newFavorites = favorites.map((favorite, index) => {
+            return (
+                <li key={index}>
+                    <Link to={`/products/${favorite.slug}`}>
+                        <div className="cart-img">
+                            <img src={favorite.mainImg} alt=""/>
+                        </div>
+                        <div className="cart-item">
+                            <h3>
+                                {favorite.name.toLowerCase()}
+                            </h3>
+                            <p>{numeral(favorite.price).format(0,0)} vnd</p>
+                        </div>
+                    </Link>
+                </li>
+            )
+        });
+    }
+
+    const responseGoogle = (response) => {
+        dispatch(actions.loginUser(response?.profileObj?.givenName, response?.profileObj?.imageUrl));
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }
+
+    const handleInputSearch = (e) => {
+        setInputSearch(e.target.value);
+    }
+
+    const handleSearch = () => {
+        dispatch(actions.searchProduct(inputSearch));
     }
     
-    responseGoogle = (response) => {
-        this.props.handleLogin(response.profileObj.givenName, response.profileObj.imageUrl);
+    const handleSignOut = () => {
+        dispatch(actions.logoutUser());
+        setUser(null);
     }
 
-    componentDidMount() { 
-        this.props.getFavorite();
-        this.props.getCarts();
-        this.props.getProducts();
-    }
-
-    handleInputSearch = (e) => {
-        this.setState({
-            inputSearch: e.target.value
-        })
-    }
-
-    handleSearch = () => {
-        let {inputSearch} = this.state;
-        this.props.onSearch(inputSearch);
-    }
-    
-    handleSignOut = () => {
-        this.props.handleLogOut();
-    }
-
-    render() {
-        let {carts, favorites, login} = this.props;
-        let {name, avatar, isLogin} = login;
-        let newCarts = [];
-        let newFavorites = [];
-        let total = 0;
-        if(carts.length > 0)
-            carts = carts.map(cart => {
-                total += cart.price * cart.quantity;
-                if(newCarts.find(elm => elm.slug === cart.slug))
-                    return '';
-                else {
-                    newCarts.push(cart);
-                    return (
-                        <li>
-                            <Link to={`/products/${cart.slug}`}>
-                                <div className="cart-img">
-                                    <img src={cart.mainImg} alt=""/>
-                                </div>
-                                <div className="cart-item">
-                                    <h3>
-                                        {cart.name.toLowerCase()}
-                                    </h3>
-                                    <p>{numeral(cart.price).format(0,0)} vnd</p>
-                                </div>
-                            </Link>
-                        </li>
-                    );
-                }    
-            });
-            if(favorites.length > 0) {
-                newFavorites = favorites.map(favorite => {
-                    return (
-                        <li>
-                            <Link to={`/products/${favorite.slug}`}>
-                                <div className="cart-img">
-                                    <img src={favorite.mainImg} alt=""/>
-                                </div>
-                                <div className="cart-item">
-                                    <h3>
-                                        {favorite.name.toLowerCase()}
-                                    </h3>
-                                    <p>{numeral(favorite.price).format(0,0)} vnd</p>
-                                </div>
-                            </Link>
-                        </li>
-                    )
-                });
-            }
-        return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light" >
+    return (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" >
                 <div className="container">
                     <Link to='/'>
                         <img src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/Logo_Ananas_Header.svg" alt=""/>                
@@ -121,9 +116,9 @@ class Header extends Component {
                         </ul>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" 
-                                    onChange={this.handleInputSearch} 
+                                    onChange={handleInputSearch} 
                                     placeholder="Search" aria-label="Search" />
-                            <button className="btn" onClick={this.handleSearch}>
+                            <button className="btn" onClick={handleSearch}>
                                 <Link to='/search'>
                                     <i class="fas fa-search"></i>
                                 </Link>
@@ -155,22 +150,22 @@ class Header extends Component {
                             </div>
                         </div>
                         <div>
-                           {name ? ''
+                           {user?.name ? ''
                              : <GoogleLogin  
                                 clientId="586157721906-8ca913t35i5u9lk76vgcms0oi9360ff9.apps.googleusercontent.com"
                                 buttonText="Login"
-                                onSuccess={this.responseGoogle}    
-                                onFailure={this.responseGoogle}
+                                onSuccess={responseGoogle}    
+                                onFailure={responseGoogle}
                                 cookiePolicy={'single_host_origin'}/>
                             }
                         </div>
                         <div className='user'>
-                            {avatar ? 
+                            {user?.avatar ? 
                                 <>
-                                    <img src={avatar} alt=""/>
-                                     {name}
+                                    <img src={user?.avatar} alt=""/>
+                                     {user?.name}
                                     <button className="btn btn-logout" title='Sign-out'
-                                            onClick={()=>this.handleSignOut()}
+                                            onClick={handleSignOut}
                                     >
                                         <i class="fas fa-sign-out-alt"></i>
                                     </button>
@@ -180,40 +175,8 @@ class Header extends Component {
                 </div>
                 <ToastContainer autoClose={2000} />
             </nav>
-        )
-    }
-}
+    )
 
-const mapStateToProps = (state) => {
-    return {
-        carts: state.cartReducer,
-        favorites: state.favoriteReducer,
-        login: state.isLogin
-    }
 }
-
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onSearch: (inputSearch) => {
-            dispatch(actions.searchProduct(inputSearch));
-        },
-        getCarts: () => {
-            dispatch(actions.fetchCartsRequest());
-        },
-        getFavorite: () => {
-            dispatch(actions.fetchFavoriteRequest());
-        },
-        getProducts: () => {
-            dispatch(actions.fetchProductsRequest());
-        },
-        handleLogin: (name, avatar) => {
-            dispatch(actions.loginUser(name, avatar));
-        },
-        handleLogOut: () => {
-            dispatch(actions.logoutUser());
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
 

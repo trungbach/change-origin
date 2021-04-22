@@ -8,10 +8,10 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Products from './pages/Products';
 import SingleProduct from './pages/SingleProduct';
-import SearchResult from './components/SearchResult';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ButtonScroll from './components/ButtonScroll';
+import SearchResult from './pages/SearchResult';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import ButtonScroll from './components/Button/ButtonScroll';
 
 function App() {
 
